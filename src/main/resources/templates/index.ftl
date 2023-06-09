@@ -84,10 +84,10 @@
         <span class="table-cell"></span>
     </div>
     <div class="table-row">
-        <span class="table-cell">${YaoGuaInfo.main.sixYao.sixGodBeast!""}　</span>
+        <span class="table-cell">${YaoGuaInfo.main.sixYao.sixGodBeast!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.sixYao.fuShen!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.sixYao.yaoIcon!""}</span>
-        <span class="table-cell">${YaoGuaInfo.main.sixYao.sixQinInfo!""}${YaoGuaInfo.main.sixYao.branchInfo!""}${YaoGuaInfo.main.sixYao.branchFiveProperty!""}　</span>
+        <span class="table-cell">${YaoGuaInfo.main.sixYao.sixQinInfo!""}${YaoGuaInfo.main.sixYao.branchInfo!""}${YaoGuaInfo.main.sixYao.branchFiveProperty!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.sixYao.launch!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.sixYao.shiYing!""}</span>
         <span class="table-cell"></span>
@@ -98,41 +98,41 @@
     </div>
 
     <div class="table-row">
-        <span class="table-cell">${YaoGuaInfo.main.fiveYao.sixGodBeast!""}　</span>
+        <span class="table-cell">${YaoGuaInfo.main.fiveYao.sixGodBeast!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.fiveYao.fuShen!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.fiveYao.yaoIcon!""}</span>
 
-        <span class="table-cell">${YaoGuaInfo.main.fiveYao.sixQinInfo!""}${YaoGuaInfo.main.fiveYao.branchInfo!""}${YaoGuaInfo.main.fiveYao.branchFiveProperty!""}　</span>
+        <span class="table-cell">${YaoGuaInfo.main.fiveYao.sixQinInfo!""}${YaoGuaInfo.main.fiveYao.branchInfo!""}${YaoGuaInfo.main.fiveYao.branchFiveProperty!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.fiveYao.launch!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.fiveYao.shiYing!""}</span>
         <span class="table-cell"></span>
         <span class="table-cell">${YaoGuaInfo.bian.fiveYao.yaoIcon!""}</span>
-        <span class="table-cell">${YaoGuaInfo.bian.fiveYao.sixQinInfo!""}${YaoGuaInfo.bian.fiveYao.branchInfo!""}${YaoGuaInfo.bian.fiveYao.branchFiveProperty!""}　</span>
+        <span class="table-cell">${YaoGuaInfo.bian.fiveYao.sixQinInfo!""}${YaoGuaInfo.bian.fiveYao.branchInfo!""}${YaoGuaInfo.bian.fiveYao.branchFiveProperty!""}</span>
         <span class="table-cell"></span>
         <span class="table-cell">${YaoGuaInfo.bian.fiveYao.shiYing!""}</span>
     </div>
 
     <div class="table-row">
-        <span class="table-cell">${YaoGuaInfo.main.fourYao.sixGodBeast!""}　</span>
+        <span class="table-cell">${YaoGuaInfo.main.fourYao.sixGodBeast!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.fourYao.fuShen!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.fourYao.yaoIcon!""}</span>
 
-        <span class="table-cell">${YaoGuaInfo.main.fourYao.sixQinInfo!""}${YaoGuaInfo.main.fourYao.branchInfo!""}${YaoGuaInfo.main.fourYao.branchFiveProperty!""}　</span>
+        <span class="table-cell">${YaoGuaInfo.main.fourYao.sixQinInfo!""}${YaoGuaInfo.main.fourYao.branchInfo!""}${YaoGuaInfo.main.fourYao.branchFiveProperty!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.fourYao.launch!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.fourYao.shiYing!""}</span>
         <span class="table-cell"></span>
         <span class="table-cell">${YaoGuaInfo.bian.fourYao.yaoIcon!""}</span>
-        <span class="table-cell">${YaoGuaInfo.bian.fourYao.sixQinInfo!""}${YaoGuaInfo.bian.fourYao.branchInfo!""}${YaoGuaInfo.bian.fourYao.branchFiveProperty!""}　</span>
+        <span class="table-cell">${YaoGuaInfo.bian.fourYao.sixQinInfo!""}${YaoGuaInfo.bian.fourYao.branchInfo!""}${YaoGuaInfo.bian.fourYao.branchFiveProperty!""}</span>
         <span class="table-cell"></span>
         <span class="table-cell">${YaoGuaInfo.bian.fourYao.shiYing!""}</span>
     </div>
 
     <div class="table-row">
-        <span class="table-cell">${YaoGuaInfo.main.threeYao.sixGodBeast!""}　</span>
+        <span class="table-cell">${YaoGuaInfo.main.threeYao.sixGodBeast!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.threeYao.fuShen!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.threeYao.yaoIcon!""}</span>
 
-        <span class="table-cell">${YaoGuaInfo.main.threeYao.sixQinInfo!""}${YaoGuaInfo.main.threeYao.branchInfo!""}${YaoGuaInfo.main.threeYao.branchFiveProperty!""}　</span>
+        <span class="table-cell">${YaoGuaInfo.main.threeYao.sixQinInfo!""}${YaoGuaInfo.main.threeYao.branchInfo!""}${YaoGuaInfo.main.threeYao.branchFiveProperty!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.threeYao.launch!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.threeYao.shiYing!""}</span>
         <span class="table-cell"></span>
@@ -143,11 +143,11 @@
     </div>
 
     <div class="table-row">
-        <span class="table-cell">${YaoGuaInfo.main.twoYao.sixGodBeast!""}　</span>
+        <span class="table-cell">${YaoGuaInfo.main.twoYao.sixGodBeast!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.twoYao.fuShen!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.twoYao.yaoIcon!""}</span>
 
-        <span class="table-cell">${YaoGuaInfo.main.twoYao.sixQinInfo!""}${YaoGuaInfo.main.twoYao.branchInfo!""}${YaoGuaInfo.main.twoYao.branchFiveProperty!""}　</span>
+        <span class="table-cell">${YaoGuaInfo.main.twoYao.sixQinInfo!""}${YaoGuaInfo.main.twoYao.branchInfo!""}${YaoGuaInfo.main.twoYao.branchFiveProperty!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.twoYao.launch!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.twoYao.shiYing!""}</span>
         <span class="table-cell"></span>
@@ -158,11 +158,11 @@
     </div>
 
     <div class="table-row">
-        <span class="table-cell">${YaoGuaInfo.main.oneYao.sixGodBeast!""}　</span>
+        <span class="table-cell">${YaoGuaInfo.main.oneYao.sixGodBeast!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.oneYao.fuShen!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.oneYao.yaoIcon!""}</span>
 
-        <span class="table-cell">${YaoGuaInfo.main.oneYao.sixQinInfo!""}${YaoGuaInfo.main.oneYao.branchInfo!""}${YaoGuaInfo.main.oneYao.branchFiveProperty!""}　</span>
+        <span class="table-cell">${YaoGuaInfo.main.oneYao.sixQinInfo!""}${YaoGuaInfo.main.oneYao.branchInfo!""}${YaoGuaInfo.main.oneYao.branchFiveProperty!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.oneYao.launch!""}</span>
         <span class="table-cell">${YaoGuaInfo.main.oneYao.shiYing!""}</span>
         <span class="table-cell"></span>
