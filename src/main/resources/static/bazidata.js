@@ -556,6 +556,7 @@ function CalcBaZiObject(jdBirth, gender, jingduBirth, isUseZTY) {
     var jd2 = jd + dt_T(jd); //力学时
     var w = XL.S_aLon(jd2 / 36525, -1); //此刻太阳视黄经
     var k = int2((w / pi2 * 360 + 45 + 15 * 360) / 30); //1984年立春起算的节气数(不含中气)
+    debugger;
     jd += pty_zty2(jd2 / 36525) + J / Math.PI / 2; //本地真太阳时(使用低精度算法计算时差)
     bzpp.JDBirthZTY = jd + J2000;//补上J2000儒略日
 
@@ -575,7 +576,7 @@ function CalcBaZiObject(jdBirth, gender, jingduBirth, isUseZTY) {
 
     jd += 13 / 24; //转为前一日23点起算(原jd为本日中午12点起算)
     var D = Math.floor(jd), SC = int2((jd - D) * 12); //日数与时辰
-
+    debugger;
     v = int2(k / 12 + 6000000);
     bzpp.iNianJZ = v % 60; //年柱甲子序号
     v = k + 2 + 60000000;

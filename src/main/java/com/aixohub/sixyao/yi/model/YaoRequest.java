@@ -7,6 +7,8 @@ public class YaoRequest {
     private String monthNum;
     private String dayNum;
     private String hourNum;
+    private String minuteNum;
+    private String JDBirth;
 
     private String year;
     private String month;
@@ -78,6 +80,22 @@ public class YaoRequest {
 
     public void setHourNum(String hourNum) {
         this.hourNum = hourNum;
+    }
+
+    public String getJDBirth() {
+        return JDBirth;
+    }
+
+    public void setJDBirth(String JDBirth) {
+        this.JDBirth = JDBirth;
+    }
+
+    public String getMinuteNum() {
+        return minuteNum;
+    }
+
+    public void setMinuteNum(String minuteNum) {
+        this.minuteNum = minuteNum;
     }
 
     public String getLunarCalendar() {

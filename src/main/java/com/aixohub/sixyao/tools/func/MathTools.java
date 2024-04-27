@@ -326,8 +326,8 @@ public class MathTools {
     }
 
     public static double dt_calc(double y) {
-        double y0 = dt_at[dt_at.length - 2][0]; // 表中最后一年
-        double t0 = dt_at[dt_at.length - 1][0]; // 表中最后一年的deltatT
+        double y0 = dt_at[dt_at.length - 2]; // 表中最后一年
+        double t0 = dt_at[dt_at.length - 1]; // 表中最后一年的deltatT
         if (y >= y0) {
             double jsd = 31; // sjd是y1年之后的加速度估计。瑞士星历表jsd=31,NASA网站jsd=32,skmap的jsd=29
             if (y > y0 + 100) {
@@ -338,15 +338,15 @@ public class MathTools {
             return v - dv * (y0 + 100 - y) / 100;
         }
         int i;
-        for (i = 0; i < dt_at.length; i++) {
-            if (y < dt_at[i][0]) {
+        for (i = 0; i < dt_at.length; i += 5) {
+            if (y < dt_at[i + 5]) {
                 break;
             }
         }
-        double t1 = (y - dt_at[i - 1][0]) / (dt_at[i][0] - dt_at[i - 1][0]) * 10;
+        double t1 = (y - dt_at[i]) / (dt_at[i + 5] - dt_at[i]) * 10;
         double t2 = t1 * t1;
         double t3 = t2 * t1;
-        return dt_at[i - 1][1] + dt_at[i - 1][2] * t1 + dt_at[i - 1][3] * t2 + dt_at[i - 1][4] * t3;
+        return dt_at[i + 1] + dt_at[i + 2] * t1 + dt_at[i + 3] * t2 + dt_at[i + 4] * t3;
     }
 
     public static double dt_T(double t) {
@@ -461,6 +461,103 @@ public class MathTools {
         return pGST(jd - dt, dt);
     }
 
+    /**
+     * //太阳升降计算。jd儒略日(须接近L当地平午UT)，L地理经度，fa地理纬度，sj=-1升,sj=1降
+     *
+     * @param jd
+     * @param L
+     * @param fa
+     * @param sj
+     * @return
+     */
+    public static double sunShengJ(double jd, double L, double fa, int sj) {
+        jd = Math.floor(jd + 0.5) - L / pi2;
+
+        for (int i = 0; i < 2; i++) {
+            //黄赤交角
+            double T = jd / 36525;
+            double E = (84381.4060 - 46.836769 * T) / rad;
+            //儒略世纪年数,力学时
+            double t = T + (32 * (T + 1.8) * (T + 1.8) - 20) / 86400 / 36525;
+
+            double J = (48950621.66 + 6283319653.318 * t + 53 * t * t - 994
+                    + 334166 * Math.cos(4.669257 + 628.307585 * t)
+                    + 3489 * Math.cos(4.6261 + 1256.61517 * t)
+                    + 2060.6 * Math.cos(2.67823 + 628.307585 * t) * t) / 10000000;
+
+            //太阳黄经以及它的正余弦值
+            double sinJ = Math.sin(J);
+            double cosJ = Math.cos(J);
+
+            double gst = (0.7790572732640 + 1.00273781191135448 * jd) * pi2 + (0.014506 + 4612.15739966 * T + 1.39667721 * T * T) / rad;
+
+            //太阳赤经
+            double A = Math.atan2(sinJ * Math.cos(E), cosJ);
+
+            //太阳赤纬
+            double D = Math.asin(Math.sin(E) * sinJ);
+
+            //太阳在地平线上的cos(时角)计算
+            double cosH0 = (Math.sin(-50 * 60 / rad) - Math.sin(fa) * Math.sin(D)) / (Math.cos(fa) * Math.cos(D));
+
+            if (Math.abs(cosH0) >= 1)
+                return 0;
+
+            jd += rad2rrad(sj * Math.acos(cosH0) - (gst + L - A)) / 6.28;
+        }
+        return jd;
+    }
+
+    /**
+     * 时差计算(高精度),t力学时儒略世纪数
+     *
+     * @param t
+     * @return
+     */
+    public static double pty_zty(double t) {
+        double t2 = t * t, t3 = t2 * t, t4 = t3 * t, t5 = t4 * t;
+        double L = (1753470142 + 628331965331.8 * t + 5296.74 * t2 + 0.432 * t3 - 0.1124 * t4 - 0.00009 * t5) / 1000000000 + Math.PI - 20.5 / rad;
+
+        //黄经章
+        double dL = -17.2 * Math.sin(2.1824 - 33.75705 * t) / rad;
+        //交角章
+        double dE = 9.2 * Math.cos(2.1824 - 33.75705 * t) / rad;
+        double E = hcjj(t) + dE;
+
+        double[] z = new double[2];
+        z[0] = XL0_calc(0, 0, t, 50) + Math.PI + gxc_sunLon(t) + dL;
+        z[1] = -(2796 * Math.cos(3.1987 + 8433.46616 * t) + 1016 * Math.cos(5.4225 + 550.75532 * t) + 804 * Math.cos(3.88 + 522.3694 * t)) / 1000000000;
+
+        //z太阳地心赤道坐标
+        z = llrConv(z, E);
+        z[0] -= dL * Math.cos(E);
+
+        L = rad2rrad(L - z[0]);
+
+        //单位是周(天)
+        return L / pi2;
+    }
+
+    /**
+     * 时差计算(低精度),误差约在1秒以内,t力学时儒略世纪数
+     *
+     * @param t
+     * @return
+     */
+    public static double pty_zty2(double t) {
+        double L = (1753470142 + 628331965331.8 * t + 5296.74 * t * t) / 1000000000 + Math.PI;
+        double[] z = new double[3];
+        double E = (84381.4088 - 46.836051 * t) / rad;
+
+        z[0] = XL0_calc(0, 0, t, 5) + Math.PI;
+        z[1] = 0;
+        z[2] = 0;
+
+        z = llrConv(z, E);
+        L = rad2rrad(L - z[0]);
+
+        return L / pi2;
+    }
 
     public static double XL0_calc(int xt, int zn, double t, int n) {
         t /= 10; // 转为儒略千年数

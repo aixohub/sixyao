@@ -382,6 +382,7 @@ function GetGGTimeBZPP()
     var birthTime = myJD.toJD();
     var bzpp =  CalcBaZiObject(birthTime, "男", 120, 0);//男女排盘没区别，只要四柱
     bzpp.myJD= myJD
+    bzpp.birthTime= birthTime
     return bzpp;
 }
 
@@ -404,6 +405,7 @@ function GetNNTimeBZPP()
    var birthTime = NongLiDayToJD(gCurNongLiYueBiao, ixYue, ixRi, hh, mm, ss);
    var bzpp =  CalcBaZiObject(birthTime, "男", 120, 0);//男女排盘没区别，只要四柱
     bzpp.myJD= myJD
+    bzpp.JDBirth= birthTime
    return bzpp;
 }
 

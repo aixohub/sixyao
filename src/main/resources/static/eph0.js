@@ -247,7 +247,9 @@ function dt_calc(y){ //计算世界时与原子时之差,传入年
  }
  var i,d=dt_at;
  for(i=0;i<d.length;i+=5) if(y<d[i+5]) break;
- var t1=(y-d[i])/(d[i+5]-d[i])*10, t2=t1*t1, t3=t2*t1;
+ var t1=(y-d[i])/(d[i+5]-d[i])*10,
+     t2=t1*t1,
+     t3=t2*t1;
  return d[i+1] +d[i+2]*t1 +d[i+3]*t2 +d[i+4]*t3;
 }
 

@@ -29,6 +29,7 @@ function handleLiuYaoPanPai() {
     formData.append('hourNum', bzpp.myJD.h)
     formData.append('minuteNum', bzpp.myJD.m)
 
+    formData.append('JDBirth', bzpp.myJD.m)
     formData.append('iRiJZ', bzpp.iRiJZ)
     formData.append('year', JiaZi[bzpp.iNianJZ])
     formData.append('month', JiaZi[bzpp.iYueJZ])

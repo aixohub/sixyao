@@ -1,5 +1,7 @@
 package com.aixohub.sixyao.yi.service.impl;
 
+import com.aixohub.sixyao.tools.func.EightWordCalculator;
+import com.aixohub.sixyao.tools.func.JulianDateTools;
 import com.aixohub.sixyao.yi.enums.*;
 import com.aixohub.sixyao.yi.model.*;
 import com.aixohub.sixyao.yi.service.IGuaExecService;
@@ -14,6 +16,7 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -38,6 +41,21 @@ public class GuaExecServiceImpl implements IGuaExecService {
     @Override
     public YaoGuaInfo queryGua(YaoRequest yaoRequest) {
         logger.info("queryGua: " + JsonUtil.toJson(yaoRequest));
+
+        int yearNum = Integer.parseInt(yaoRequest.getYearNum());
+        int monthNum = Integer.parseInt(yaoRequest.getMonthNum());
+        int dayNum = Integer.parseInt(yaoRequest.getDayNum());
+        int hourNum = Integer.parseInt(yaoRequest.getHourNum());
+        int minuteNum = Integer.parseInt(yaoRequest.getMinuteNum());
+
+
+        JulianDateTools dateTools = new JulianDateTools(yearNum, monthNum, dayNum, hourNum, minuteNum);
+        double jd = dateTools.toJD();
+        logger.info("JulianDateTools  jd: " + jd);
+        HashMap<String, Object> eightWord = EightWordCalculator.calcEightWord(jd, 1, 120, 0);
+
+        logger.info("eightWord  : " + JsonUtil.toJson(eightWord));
+
         YaoGuaInfo info = new YaoGuaInfo();
         BeanUtils.copyProperties(yaoRequest, info);
 
@@ -81,14 +99,15 @@ public class GuaExecServiceImpl implements IGuaExecService {
 
     /**
      * 六爻排盘
+     *
      * @param mainNumList
      * @param detailList
-     * @param iRiJZ
+     * @param iJiaZiDay
      * @return
      */
     private YaoLineInfo genFullLiuYaoPaiPan(List<Integer> mainNumList,
                                             List<YaoLineDetailInfo> detailList,
-                                            String iRiJZ) {
+                                            String iJiaZiDay) {
         int bgShangGuaIndex = YaoUtil.sanYaoToBaGuaIndex(mainNumList.get(3), mainNumList.get(4), mainNumList.get(5));
         int bgXiaGuaIndex = YaoUtil.sanYaoToBaGuaIndex(mainNumList.get(0), mainNumList.get(1), mainNumList.get(2));
         int[] arr = new int[mainNumList.size()];
@@ -134,8 +153,8 @@ public class GuaExecServiceImpl implements IGuaExecService {
         //安置六神、明动暗动
         //八字日干
         int[] arrLiuShen = {0, 0, 0, 0, 0, 0};
-        if (StringUtils.hasLength(iRiJZ)) {
-            int nRiGan = Integer.parseInt(iRiJZ) % 10;
+        if (StringUtils.hasLength(iJiaZiDay)) {
+            int nRiGan = Integer.parseInt(iJiaZiDay) % 10;
             int lsStart = YaoUtil.RiGanQiLiuShen[nRiGan]; //最下面起始的六神
             for (int i = 0; i < 6; i++) {
                 arrLiuShen[i] = (lsStart + i) % 6;//六神是六个
