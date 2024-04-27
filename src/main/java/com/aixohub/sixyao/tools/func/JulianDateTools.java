@@ -2,11 +2,34 @@ package com.aixohub.sixyao.tools.func;
 
 public class JulianDateTools {
 
+    /**
+     * 年
+     */
     private int Y;
+
+    /**
+     * 月
+     */
     private int M;
+
+    /**
+     * 天
+     */
     private int D;
+
+    /**
+     * 小时
+     */
     private int h;
-    private int m;
+
+    /**
+     * 分钟
+     */
+    private int minute;
+
+    /**
+     * 秒
+     */
     private double s;
 
     public JulianDateTools() {
@@ -18,7 +41,7 @@ public class JulianDateTools {
         this.M = dd.M;
         this.D = dd.D;
         this.h = dd.h;
-        this.m = dd.m;
+        this.minute = dd.minute;
         this.s = dd.s;
     }
 
@@ -27,7 +50,7 @@ public class JulianDateTools {
         M = m;
         D = d;
         this.h = h;
-        this.m = m1;
+        this.minute = m1;
         this.s = 30;
     }
 
@@ -36,7 +59,7 @@ public class JulianDateTools {
         M = m;
         D = d;
         this.h = h;
-        this.m = m1;
+        this.minute = m1;
         this.s = s;
     }
 
@@ -58,6 +81,14 @@ public class JulianDateTools {
 
     public double getS() {
         return s;
+    }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
     }
 
     public void setS(double s) {
@@ -105,7 +136,7 @@ public class JulianDateTools {
     }
 
     public double toJD() {
-        return JD(Y, M, D + ((s / 60 + m) / 60 + h) / 24);
+        return JD(Y, M, D + ((s / 60 + minute) / 60 + h) / 24);
     }
 
     public void setFromJD(double jd) {
@@ -113,7 +144,7 @@ public class JulianDateTools {
         Y = r.Y;
         M = r.M;
         D = r.D;
-        m = r.m;
+        minute = r.minute;
         h = r.h;
         s = r.s;
     }
@@ -150,8 +181,8 @@ public class JulianDateTools {
         r.h = (int) F;
         F -= r.h;
         F *= 60;
-        r.m = (int) F;
-        F -= r.m;
+        r.minute = (int) F;
+        F -= r.minute;
         F *= 60;
         r.s = F;
         return r;
@@ -159,7 +190,7 @@ public class JulianDateTools {
 
     public String DD2str(JulianDateTools r) {
         String Y = "     " + r.Y, M = "0" + r.M, D = "0" + r.D;
-        int h = r.h, m = r.m, s = (int) (r.s + 0.5);
+        int h = r.h, m = r.minute, s = (int) (r.s + 0.5);
         if (s >= 60) {
             s -= 60;
             m++;
@@ -190,7 +221,6 @@ public class JulianDateTools {
         return String.format("%02d:%02d:%02d", hh, mm, s);
     }
 
-    public final String[] Weeks = {"日", "一", "二", "三", "四", "五", "六", "七"};
 
     public int getWeek(double jd) {
         return (int) (jd + 1.5 + 7000000) % 7;

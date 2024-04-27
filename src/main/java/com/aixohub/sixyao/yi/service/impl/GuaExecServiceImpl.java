@@ -38,6 +38,10 @@ public class GuaExecServiceImpl implements IGuaExecService {
         return null;
     }
 
+    public GuaExecServiceImpl(IUseGodService useGodService) {
+        this.useGodService = useGodService;
+    }
+
     @Override
     public YaoGuaInfo queryGua(YaoRequest yaoRequest) {
         logger.info("queryGua: " + JsonUtil.toJson(yaoRequest));
@@ -54,6 +58,7 @@ public class GuaExecServiceImpl implements IGuaExecService {
         logger.info("JulianDateTools  jd: " + jd);
         HashMap<String, Object> eightWord = EightWordCalculator.calcEightWord(jd, 1, 120, 0);
 
+        String jzDay = String.valueOf(eightWord.get("JZDay"));
         logger.info("eightWord  : " + JsonUtil.toJson(eightWord));
 
         YaoGuaInfo info = new YaoGuaInfo();
@@ -86,11 +91,11 @@ public class GuaExecServiceImpl implements IGuaExecService {
         }
 
         // 本卦
-        YaoLineInfo main = genFullLiuYaoPaiPan(mainNumList, mainDetailList, yaoRequest.getiRiJZ());
+        YaoLineInfo main = genFullLiuYaoPaiPan(mainNumList, mainDetailList, jzDay);
         info.setMain(main);
 
         // 变卦
-        YaoLineInfo change = genFullLiuYaoPaiPan(changeNumList, changeDetailList, yaoRequest.getiRiJZ());
+        YaoLineInfo change = genFullLiuYaoPaiPan(changeNumList, changeDetailList, jzDay);
         info.setBian(change);
 
         return info;

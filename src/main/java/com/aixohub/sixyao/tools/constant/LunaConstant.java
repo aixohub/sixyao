@@ -2,6 +2,39 @@ package com.aixohub.sixyao.tools.constant;
 
 public class LunaConstant {
 
+    public static final String[] WeekDays =
+            {
+                    "周一",
+                    "周二",
+                    "周三",
+                    "周四",
+                    "周五",
+                    "周六",
+                    "周日"
+            };
+
+    /**
+     * 十天干
+     **/
+    public static final String[] tian_gan = {"甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"};
+    /**
+     * 十二地支
+     **/
+    public static final String[] di_zhi = {
+            "子",
+            "丑",
+            "寅",
+            "卯",
+            "辰",
+            "巳",
+            "午",
+            "未",
+            "申",
+            "酉",
+            "戌",
+            "亥"
+    };
+
     public static final String[] JIA_ZI = {
             "甲子",
             "乙丑",

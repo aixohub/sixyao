@@ -56,7 +56,7 @@ public class EightWordCalculator {
         bzpp.put("JZMonth", v % 60);
         v = D - 6 + 9000000;
         // day
-        int day = v % 60;
+        int JZDay = v % 60;
         bzpp.put("JZDay", v % 60);
         v = (D - 1) * 12 + 90000000 + SC;
         // hour
@@ -64,16 +64,54 @@ public class EightWordCalculator {
         bzpp.put("JZHour", v % 60);
         String yearStr = LunaConstant.JIA_ZI[year];
         String monthStr = LunaConstant.JIA_ZI[month];
-        String dayStr = LunaConstant.JIA_ZI[day];
+        String dayStr = LunaConstant.JIA_ZI[JZDay];
         String hourStr = LunaConstant.JIA_ZI[hour];
         bzpp.put("yearStr", yearStr);
         bzpp.put("monthStr", monthStr);
         bzpp.put("dayStr", dayStr);
         bzpp.put("hourStr", hourStr);
-
+        bzpp.put("dayNull", getRiKongWang(JZDay));
+        bzpp.put("gregorianCalendar", getGGTimeStr(curJD));
 
         return bzpp;
     }
 
 
+    public static String getRiKongWang(int JZDay) {
+        int nStartJZXun = JZDay - (JZDay % 10);
+        int iKong1 = ((nStartJZXun + 10) % 60) % 12;
+        int iKong2 = (iKong1 + 1) % 12;
+        String strRet = "（日空：" + LunaConstant.di_zhi[iKong1] + "、" +  LunaConstant.di_zhi[iKong2] + "）";
+        return strRet;
+    }
+
+    public static String getGGTimeStr(double curJD) {
+        JulianDateTools myDD = new JulianDateTools(curJD);
+        String strTemp = "公历时间：" + myDD.getY() + "年"
+                +  myDD.getM() + "月"
+                + myDD.getD() + "日"
+                + myDD.getH() + "时"
+                + myDD.getMinute() + "分"
+                + "，" + LunaConstant.WeekDays[getiDayOfWeek(curJD)];
+        return strTemp;
+    }
+
+
+    public static int getiDayOfWeek(double curJD) {
+        // Add a large integer to ensure it is positive, the large integer is a multiple of 7
+        int delta = (int) (curJD - CalcConstant.J2000 + 0.5) + 7000000;
+        int dw = ((delta % 7) + 5) % 7;
+        return dw;
+    }
+
+    public static String getNNTimeStr(double curJD) {
+        // Calculate the Gregorian date
+        JulianDateTools dateTools = new JulianDateTools(curJD);
+
+        // Lunar date, 0:00 is today's zi hour, after 23:00 is tomorrow's zi hour, need to distinguish
+
+
+        String strTemp = "农历时间：" ;
+        return strTemp;
+    }
 }
