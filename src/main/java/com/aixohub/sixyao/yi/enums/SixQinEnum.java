@@ -4,11 +4,11 @@ package com.aixohub.sixyao.yi.enums;
  * 六亲
  */
 public enum SixQinEnum {
-    brother("", "兄弟"),
-    mother("", "父母"),
-    wife("", "妻财"),
-    gov("", "官鬼"),
-    son("", "子孙"),
+    brother("brother", "兄弟"),
+    mother("mother", "父母"),
+    wife("wife", "妻财"),
+    gov("gov", "官鬼"),
+    son("son", "子孙"),
 
 
     ;

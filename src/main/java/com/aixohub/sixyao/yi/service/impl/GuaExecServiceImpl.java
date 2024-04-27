@@ -3,20 +3,30 @@ package com.aixohub.sixyao.yi.service.impl;
 import com.aixohub.sixyao.yi.enums.*;
 import com.aixohub.sixyao.yi.model.*;
 import com.aixohub.sixyao.yi.service.IGuaExecService;
+import com.aixohub.sixyao.yi.service.IUseGodService;
 import com.aixohub.sixyao.yi.utils.JsonUtil;
 import com.aixohub.sixyao.yi.utils.YaoUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class GuaExecServiceImpl implements IGuaExecService {
 
+    @Resource
+    private IUseGodService useGodService;
+
     @Override
-    public SixFourGuaInfo calcInf() {
+    public SixFourGuaInfo calcInf(YaoGuaInfo yaoGuaInfo) {
+        YaoCalcInfo yaoCalcInfo = new YaoCalcInfo();
+        yaoCalcInfo.setYaoGuaInfo(yaoGuaInfo);
+        yaoCalcInfo = useGodService.calcUseGod(yaoCalcInfo);
+        String askInfo = yaoGuaInfo.getAskInfo();
+
         return null;
     }
 

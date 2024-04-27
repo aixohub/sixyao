@@ -26,7 +26,7 @@ public class GuaController {
     @ResponseBody
     @RequestMapping("/query")
     public SixFourGuaInfo getGua() {
-        return guaExecService.calcInf();
+        return new SixFourGuaInfo();
     }
 
 
@@ -44,6 +44,7 @@ public class GuaController {
     public String liuyaoHandShake(Model model, YaoRequest yaoRequest) {
 
         YaoGuaInfo yaoGuaInfo = guaExecService.queryGua(yaoRequest);
+        guaExecService.calcInf(yaoGuaInfo);
         model.addAttribute("YaoGuaInfo", yaoGuaInfo);
         model.addAttribute("yaoRequest", yaoRequest);
         return "index";

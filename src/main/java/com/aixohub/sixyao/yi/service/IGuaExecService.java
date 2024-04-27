@@ -5,7 +5,8 @@ import com.aixohub.sixyao.yi.model.YaoGuaInfo;
 import com.aixohub.sixyao.yi.model.YaoRequest;
 
 public interface IGuaExecService {
-    SixFourGuaInfo calcInf();
+
+    SixFourGuaInfo calcInf(YaoGuaInfo yaoGuaInfo);
 
 
     YaoGuaInfo queryGua(YaoRequest yaoRequest);

@@ -25,6 +25,9 @@ public class YaoGuaInfo {
      */
     private String gregorianCalendar;
 
+    private String askInfo;
+    private String askInfoType;
+
     private YaoLineInfo main;
 
     private YaoLineInfo bian;
@@ -99,5 +102,21 @@ public class YaoGuaInfo {
 
     public void setBian(YaoLineInfo bian) {
         this.bian = bian;
+    }
+
+    public String getAskInfo() {
+        return askInfo;
+    }
+
+    public void setAskInfo(String askInfo) {
+        this.askInfo = askInfo;
+    }
+
+    public String getAskInfoType() {
+        return askInfoType;
+    }
+
+    public void setAskInfoType(String askInfoType) {
+        this.askInfoType = askInfoType;
     }
 }
