@@ -1,6 +1,8 @@
 package com.aixohub.sixyao.tools.func;
 
 import com.aixohub.sixyao.tools.constant.CalcConstant;
+import com.aixohub.sixyao.tools.constant.CalcConstant1;
+import com.aixohub.sixyao.tools.constant.CalcConstant3;
 
 import static com.aixohub.sixyao.tools.constant.CalcConstant.*;
 
@@ -11,46 +13,10 @@ public class MathTools {
         return (int) Math.floor(v);
     }
 
-
-    public static double sqrt(double x) {
-        return Math.sqrt(x);
-    }
-
     public static double floor(double x) {
         return Math.floor(x);
     }
 
-    public static double abs(double x) {
-        return Math.abs(x);
-    }
-
-    public static double sin(double x) {
-        return Math.sin(x);
-    }
-
-    public static double cos(double x) {
-        return Math.cos(x);
-    }
-
-    public static double tan(double x) {
-        return Math.tan(x);
-    }
-
-    public static double asin(double x) {
-        return Math.asin(x);
-    }
-
-    public static double acos(double x) {
-        return Math.acos(x);
-    }
-
-    public static double atan(double x) {
-        return Math.atan(x);
-    }
-
-    public static double atan2(double y, double x) {
-        return Math.atan2(y, x);
-    }
 
     public static double rad2mrad(double v) {
         // 对超过0-2PI的角度转为0-2PI
@@ -500,7 +466,7 @@ public class MathTools {
         t /= 10; // 转为儒略千年数
         int i, j;
         double v = 0, tn = 1, c;
-        double[] F = CalcConstant.XL0[xt];
+        double[] F = CalcConstant1.XL0()[xt];
         int n1, n2, N;
         int n0, pn = zn * 6 + 1, N0 = (int) (F[pn + 1] - F[pn]); // N0序列总数
         for (i = 0; i < 6; i++, tn *= t) {
@@ -544,7 +510,7 @@ public class MathTools {
      * @return
      */
     public static double XL1_calc(int zn, double t, int n) {
-        double[][] ob = XL1[zn];
+        double[][] ob = CalcConstant3.XL1[zn];
         double v = 0, tn = 1, c;
         double t2 = t * t, t3 = t2 * t, t4 = t3 * t, t5 = t4 * t, tx = t - 10;
         if (zn == 0) {
