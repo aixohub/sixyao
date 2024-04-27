@@ -35,7 +35,7 @@ public class GuaController {
         return "liuyao_req";
     }
 
-    @RequestMapping("/liuyao-hand")
+    @RequestMapping("/")
     public String liuyaoHand(Model model) {
         return "liuyao/liuyao-hand";
     }

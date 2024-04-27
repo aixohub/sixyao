@@ -566,7 +566,7 @@ function nutation2(t){ //中精度章动计算,t是世纪数
  }
  return [dL/100/rad, dE/100/rad]; //黄经章动,交角章动
 }
-function nutationLon2(t){ //只计算黄经章动
+function nutationLon2(t){
  var i,a, t2=t*t, dL=0, B=this.nutB;
  for(i=0;i<B.length;i+=5){
   if(i==0) a=-1.742*t; else a=0;

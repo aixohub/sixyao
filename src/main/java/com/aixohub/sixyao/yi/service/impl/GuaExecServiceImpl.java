@@ -6,6 +6,8 @@ import com.aixohub.sixyao.yi.service.IGuaExecService;
 import com.aixohub.sixyao.yi.service.IUseGodService;
 import com.aixohub.sixyao.yi.utils.JsonUtil;
 import com.aixohub.sixyao.yi.utils.YaoUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -17,11 +19,14 @@ import java.util.List;
 @Service
 public class GuaExecServiceImpl implements IGuaExecService {
 
+    private static final Logger logger = LoggerFactory.getLogger(GuaExecServiceImpl.class);
+
     @Resource
     private IUseGodService useGodService;
 
     @Override
     public SixFourGuaInfo calcInf(YaoGuaInfo yaoGuaInfo) {
+        logger.info("calcInf param : " + JsonUtil.toJson(yaoGuaInfo));
         YaoCalcInfo yaoCalcInfo = new YaoCalcInfo();
         yaoCalcInfo.setYaoGuaInfo(yaoGuaInfo);
         yaoCalcInfo = useGodService.calcUseGod(yaoCalcInfo);
@@ -32,7 +37,7 @@ public class GuaExecServiceImpl implements IGuaExecService {
 
     @Override
     public YaoGuaInfo queryGua(YaoRequest yaoRequest) {
-
+        logger.info("queryGua: " + JsonUtil.toJson(yaoRequest));
         YaoGuaInfo info = new YaoGuaInfo();
         BeanUtils.copyProperties(yaoRequest, info);
 
@@ -51,7 +56,7 @@ public class GuaExecServiceImpl implements IGuaExecService {
             mainDetailList.add(yaoLine);
         }
 
-        System.out.println(JsonUtil.toJson(mainDetailList));
+        logger.info("mainDetailList: " + JsonUtil.toJson(mainDetailList));
 
         List<YaoLineDetailInfo> changeDetailList = new ArrayList<>();
         List<Integer> changeNumList = new ArrayList<>();
@@ -67,7 +72,6 @@ public class GuaExecServiceImpl implements IGuaExecService {
         YaoLineInfo change = genFullLiuYaoPaiPan(changeNumList, changeDetailList, yaoRequest.getiRiJZ());
         info.setBian(change);
 
-        System.out.println(JsonUtil.toJson(info));
         return info;
     }
 
@@ -119,7 +123,7 @@ public class GuaExecServiceImpl implements IGuaExecService {
         //安置六神、明动暗动
         //八字日干
         int[] arrLiuShen = {0, 0, 0, 0, 0, 0};
-        if (!StringUtils.isEmpty(iRiJZ)) {
+        if (StringUtils.hasLength(iRiJZ)) {
             int nRiGan = Integer.parseInt(iRiJZ) % 10;
             int lsStart = YaoUtil.RiGanQiLiuShen[nRiGan]; //最下面起始的六神
             for (int i = 0; i < 6; i++) {
