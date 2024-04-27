@@ -2,6 +2,12 @@ package com.aixohub.sixyao.yi.model;
 
 public class YaoRequest {
 
+    private String calendarType;
+    private String yearNum;
+    private String monthNum;
+    private String dayNum;
+    private String hourNum;
+
     private String year;
     private String month;
     private String day;
@@ -33,6 +39,46 @@ public class YaoRequest {
     private String threeYao;
     private String twoYao;
     private String oneYao;
+
+    public String getCalendarType() {
+        return calendarType;
+    }
+
+    public void setCalendarType(String calendarType) {
+        this.calendarType = calendarType;
+    }
+
+    public String getYearNum() {
+        return yearNum;
+    }
+
+    public void setYearNum(String yearNum) {
+        this.yearNum = yearNum;
+    }
+
+    public String getMonthNum() {
+        return monthNum;
+    }
+
+    public void setMonthNum(String monthNum) {
+        this.monthNum = monthNum;
+    }
+
+    public String getDayNum() {
+        return dayNum;
+    }
+
+    public void setDayNum(String dayNum) {
+        this.dayNum = dayNum;
+    }
+
+    public String getHourNum() {
+        return hourNum;
+    }
+
+    public void setHourNum(String hourNum) {
+        this.hourNum = hourNum;
+    }
 
     public String getLunarCalendar() {
         return lunarCalendar;

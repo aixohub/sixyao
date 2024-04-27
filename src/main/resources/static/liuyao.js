@@ -381,12 +381,19 @@ function GetGGTimeBZPP()
     //儒略日
     var birthTime = myJD.toJD();
     var bzpp =  CalcBaZiObject(birthTime, "男", 120, 0);//男女排盘没区别，只要四柱
+    bzpp.myJD= myJD
     return bzpp;
 }
 
 //农历时间排盘
 function GetNNTimeBZPP()
 {
+    var myJD = JD;
+    myJD.Y = Number( sNNMonth.selectedIndex );
+    myJD.M = Number( sNNDay.selectedIndex );
+    myJD.D = Number( sNNHour.options[ sNNHour.selectedIndex ].value );
+    myJD.h = Number( sNNMinute.selectedIndex );
+    myJD.m = 30;
     //提取农历时间信息
    var ixYue = Number( sNNMonth.selectedIndex ); //月序
    var ixRi = Number( sNNDay.selectedIndex );    //日序
@@ -396,6 +403,7 @@ function GetNNTimeBZPP()
    //计算儒略日
    var birthTime = NongLiDayToJD(gCurNongLiYueBiao, ixYue, ixRi, hh, mm, ss);
    var bzpp =  CalcBaZiObject(birthTime, "男", 120, 0);//男女排盘没区别，只要四柱
+    bzpp.myJD= myJD
    return bzpp;
 }
 

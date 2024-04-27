@@ -22,8 +22,14 @@ function handleLiuYaoPanPai() {
         }
     };
     var formData = new FormData(form)
-    formData.append('iRiJZ', bzpp.iRiJZ)
+    formData.append('calendarType', gbUseNongLi)
+    formData.append('yearNum', bzpp.myJD.Y)
+    formData.append('monthNum', bzpp.myJD.M)
+    formData.append('dayNum', bzpp.myJD.D)
+    formData.append('hourNum', bzpp.myJD.h)
+    formData.append('minuteNum', bzpp.myJD.m)
 
+    formData.append('iRiJZ', bzpp.iRiJZ)
     formData.append('year', JiaZi[bzpp.iNianJZ])
     formData.append('month', JiaZi[bzpp.iYueJZ])
     formData.append('day', JiaZi[bzpp.iRiJZ])

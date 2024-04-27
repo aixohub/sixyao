@@ -52,6 +52,7 @@ public class GuaExecServiceImpl implements IGuaExecService {
         List<Integer> mainNumList = new ArrayList<>();
         for (String yao : lineList) {
             YaoLineDetailInfo yaoLine = new YaoLineDetailInfo();
+            // 处理本卦的六爻信息
             setYaoInfo(mainNumList, yaoLine, yao);
             mainDetailList.add(yaoLine);
         }
@@ -61,20 +62,30 @@ public class GuaExecServiceImpl implements IGuaExecService {
         List<YaoLineDetailInfo> changeDetailList = new ArrayList<>();
         List<Integer> changeNumList = new ArrayList<>();
         for (YaoLineDetailInfo lineInfo : mainDetailList) {
+            // 根据本卦获取变卦
             YaoLineDetailInfo changeYaoInfo = getChangeYaoInfo(changeNumList, lineInfo);
             changeDetailList.add(changeYaoInfo);
         }
 
-
+        // 本卦
         YaoLineInfo main = genFullLiuYaoPaiPan(mainNumList, mainDetailList, yaoRequest.getiRiJZ());
         info.setMain(main);
 
+        // 变卦
         YaoLineInfo change = genFullLiuYaoPaiPan(changeNumList, changeDetailList, yaoRequest.getiRiJZ());
         info.setBian(change);
 
         return info;
     }
 
+
+    /**
+     * 六爻排盘
+     * @param mainNumList
+     * @param detailList
+     * @param iRiJZ
+     * @return
+     */
     private YaoLineInfo genFullLiuYaoPaiPan(List<Integer> mainNumList,
                                             List<YaoLineDetailInfo> detailList,
                                             String iRiJZ) {
