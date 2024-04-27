@@ -42,7 +42,7 @@ public class EightWordCalculator {
         }
         bzpp.put("curJD", curDD);
 
-        jd += 13 / 24;
+        jd += 13.0 / 24;
         int D = (int) Math.floor(jd);
         int SC = MathTools.int2((jd - D) * 12);
 

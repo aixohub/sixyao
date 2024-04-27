@@ -417,9 +417,14 @@ public class MathTools {
     }
 
     public static double nutationLon2(double t) {
+        double a;
         double t2 = t * t, dL = 0;
         for (int i = 0; i < nutB.length; i += 5) {
-            double a = (i == 0) ? -1.742 * t : 0;
+            if (i == 0) {
+                a = -1.742 * t;
+            } else {
+                a = 0;
+            }
             dL += (nutB[i + 3] + a) * Math.sin(nutB[i] + nutB[i + 1] * t + nutB[i + 2] * t2);
         }
         return dL / 100 / rad;
